@@ -1,4 +1,7 @@
-<h2>Clientes</h2>
+
+<h1>Clientes</h1>
+
+<h2>Menu Clientes</h2>
 <div>
     <form #clienteForm="ngForm" (ngSubmit)="addCliente(clienteForm)">
         <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="selectedCliente._id">
@@ -24,45 +27,17 @@
     </form>
 </div>
 
-<div>
-    <table>
-        <thead>
-            <th>ID</th>
-            <th>Dni</th>
-            <th>Apellidos</th>
-            <th>Nombres</th>
-            <th>Edad</th>
-            <th>Salario</th>
-            <td>Ajustes</td>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of clientes; index as i">
-                <td> {{ i + 1 }} </td>
-                <td> {{ item.dni }} </td>
-                <td> {{ item.apellidos }} </td>
-                <td> {{ item.nombres }} </td>
-                <td> {{ item.edad }} </td>
-                <td> {{ item.salario }} </td>
-                <td>
-                    <a href="#" (click)="editCliente(item)">editar</a>
-                    <a href="#" (click)="deleteCliente(item)">borrar</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<h4>Table primeng</h4>
+<h2>Tabla de Clientes</h2>
 
 <p-table [value]="clientes" styleClass="p-datatable-gridlines">
     <ng-template pTemplate="header">
         <tr>
             <th style="width: 5%" >ID</th>
-            <th style="width: 20%" >DNI</th>
-            <th style="width: 20%" >Apellidos</th>
-            <th style="width: 20%" >Nombres</th>
-            <th style="width: 10%" >Edad</th>
-            <th style="width: 20%" >Salario</th>
+            <th style="width: 10%" >DNI</th>
+            <th style="width: 10%" >Apellidos</th>
+            <th style="width: 10%" >Nombres</th>
+            <th style="width: 5%" >Edad</th>
+            <th style="width: 5%" >Salario</th>
             <th style="width: 5%" >Ajustes</th>
         </tr>
     </ng-template>
