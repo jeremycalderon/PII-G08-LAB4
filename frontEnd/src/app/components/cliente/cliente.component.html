@@ -1,0 +1,90 @@
+<h2>Clientes</h2>
+<div>
+    <form #clienteForm="ngForm" (ngSubmit)="addCliente(clienteForm)">
+        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="selectedCliente._id">
+        <div>
+            <input type="text" name="dni" #dni="ngModel" [(ngModel)]="selectedCliente.dni" placeholder="Ingrese su dni">
+        </div>
+        <div>
+            <input type="text" name="apellidos" #apellidos="ngModel" [(ngModel)]="selectedCliente.apellidos" placeholder="Ingrese sus apellidos">
+        </div>
+        <div>
+            <input type="text" name="nombres" #nombres="ngModel" [(ngModel)]="selectedCliente.nombres" placeholder="Ingrese sus nombres">
+        </div>
+        <div>
+            <input type="text" name="edad" #edad="ngModel" [(ngModel)]="selectedCliente.edad" placeholder="Ingrese su edad">
+        </div>
+        <div>
+            <input type="text" name="salario" #salario="ngModel" [(ngModel)]="selectedCliente.salario" placeholder="Ingrese su salario">
+        </div>
+        <div>
+            <button>Enviar</button>
+            <button (click)="resetForm(clienteForm)">Borrar</button>
+        </div>
+    </form>
+</div>
+
+<div>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Dni</th>
+            <th>Apellidos</th>
+            <th>Nombres</th>
+            <th>Edad</th>
+            <th>Salario</th>
+            <td>Ajustes</td>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of clientes; index as i">
+                <td> {{ i + 1 }} </td>
+                <td> {{ item.dni }} </td>
+                <td> {{ item.apellidos }} </td>
+                <td> {{ item.nombres }} </td>
+                <td> {{ item.edad }} </td>
+                <td> {{ item.salario }} </td>
+                <td>
+                    <a href="#" (click)="editCliente(item)">editar</a>
+                    <a href="#" (click)="deleteCliente(item)">borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h4>Table primeng</h4>
+
+<p-table [value]="clientes" styleClass="p-datatable-gridlines">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 5%" >ID</th>
+            <th style="width: 20%" >DNI</th>
+            <th style="width: 20%" >Apellidos</th>
+            <th style="width: 20%" >Nombres</th>
+            <th style="width: 10%" >Edad</th>
+            <th style="width: 20%" >Salario</th>
+            <th style="width: 5%" >Ajustes</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-i = "rowIndex" let-cliente>
+        <tr>
+            <td>{{i + 1}}</td>
+            <td>{{cliente.dni}}</td>
+            <td>{{cliente.apellidos}}</td>
+            <td>{{cliente.nombres}}</td>
+            <td>{{cliente.edad}}</td>
+            <td>{{cliente.salario}}</td>
+            <td>
+                <button pButton type= "button" icon ="pi pi-user-edit" (click)="editCliente(cliente)">
+                </button><button pButton type= "button" icon ="pi pi-trash" (click)="deleteCliente(cliente)"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <span class = "p-buttonset">
+            <button pButton pRipple icon = "pi pi-check" class = "p-button-rounded p-button-success p-button-text" (click)="save()"></button>
+            <button pButton pRipple icon = "pi pi-times" class = "p-button-rounded p-button-danger p-button-text" (click)="delete()"></button>
+        </span>
+    </ng-template>
+</p-table>
+
